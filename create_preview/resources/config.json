@@ -1,7 +1,6 @@
 {
     "font-types":{
         "berhard": "fonts/bernhard.tff",
-        "futura": "fonts/futura.tff",
         "gabriola": "fonts/gabriola.tff",
         "garamond": "fonts/garamond.tff",
         "shelley_allegro": "fonts/shelley_allegro.tff"
