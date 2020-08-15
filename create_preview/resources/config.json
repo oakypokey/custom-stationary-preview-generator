@@ -6,7 +6,7 @@
         "shelley_allegro": "fonts/shelley_allegro.ttf"
     },
     "a5_paper":{
-        "oxford_cream": "A5_images/A5-OxfordCream-2.png",
+        "oxford_cream": "A5_images/A5OC.png",
         "oxford_white": "A5_images/A5-OxfordWhite-2.png",
         "rives_sand": "A5_images/A5-RivesSand-2.png",
         "rives_wheat": "A5_images/A5-RivesWheat-2.png",
@@ -36,14 +36,14 @@
     },
     "quantities": [100, 40, 50, 80],
     "paper_size": {
-        "a5": {
+        "a5_paper": {
             "w": 420,
             "h": 595,
             "dpi": 72
         },
-        "a6": {
-            "w": 298,
-            "h": 420,
+        "a6_paper": {
+            "w": 420,
+            "h": 298,
             "dpi": 72
         }
     }

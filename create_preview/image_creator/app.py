@@ -131,6 +131,13 @@ class ImageCreator(object):
 
     # Create image using values
     def generate_image(self):
-        print("This is where the image is generated")        
+        payload = "This is where the image is generated"
+        image_size = data["paper_size"][self.paper_type]['w'], data["paper_size"][self.paper_type]['h']
+        background = Image.open(self.paper_color, 'r')
+        background = background.resize(image_size)
+        canvas = Image.new('CMYK', image_size)
+        canvas.paste(background)
+        canvas.show()
+        return payload
         
 
