@@ -1,1 +1,1 @@
-web: gunicorn create_preview:create_app()
+web: gunicorn "create_preview:create_app()"

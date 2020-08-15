@@ -2,3 +2,4 @@ flask
 marshmallow
 pillow
 requests
+gunicorn
