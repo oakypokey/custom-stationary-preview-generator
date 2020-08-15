@@ -1,5 +1,4 @@
 flask
 marshmallow
-openssl
 pillow
 requests
