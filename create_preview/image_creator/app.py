@@ -1,4 +1,4 @@
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageColor
 import importlib
 import json
 import os
@@ -27,7 +27,7 @@ class ImageCreator(object):
     def set_font_type(self, font_type_string):
         status = {}
         if font_type_string in data["font-types"].keys():
-            self.font_type = ImageFont.truetype(os.path.join(resources_path, data["font-types"][font_type_string]))
+            self.font_type = os.path.join(resources_path, data["font-types"][font_type_string])
             status["error"] = False
         else:
             status["error"] = True
@@ -136,13 +136,62 @@ class ImageCreator(object):
         image_size = data["paper_size"][self.paper_type]['w'], data["paper_size"][self.paper_type]['h']
         background = Image.open(self.paper_color, 'r')
         background = background.resize(image_size)
-        canvas = Image.new('CMYK', image_size)
+        canvas = Image.new('RGB', image_size)
         canvas.paste(background)
 
+        font_size = 16
+
+        # Placing text
+        draw = ImageDraw.Draw(canvas)
+
+        font = ImageFont.truetype(self.font_type, font_size)
+        if "bottom" in self.alignment:
+            text_content = ", ".join(self.lines.values())
+            
+        else: 
+            text_content = "\n".join(self.lines.values())
+
+        text_size = draw.multiline_textsize(text_content, font=font)
+
+        while text_size[0] > (image_size[0] - self.mm_to_pixels(5)):
+            font_size = font_size - 1
+            font = ImageFont.truetype(self.font_type, font_size)
+            text_size = draw.multiline_textsize(text_content, font=font)
+            
+        coords, alignment = self.get_size_information(image_size, text_size, alignment=self.alignment)
+        
+        draw.multiline_text(coords, text_content, fill=self.text_color, font=font, align=alignment)
+        
         # Saving bytes and encoding as base64
         buffered = BytesIO()
         canvas.save(buffered, format="JPEG")
         img_str = base64.b64encode(buffered.getvalue())
         return img_str
+    
+    def mm_to_pixels(self, mm):
+        return mm * 3.779527559
+
+    def get_size_information(self, canvas_size, text_size, alignment="right_left"):
+        CANVAS_W, CANVAS_H = canvas_size
+        TEXT_W, TEXT_H = text_size
+
+        if "right" in alignment:
+            if "left" in alignment:
+                text_alignment = "left"
+            else:
+                text_alignment = "right"
+            
+            x = CANVAS_W - TEXT_W - self.mm_to_pixels(2) 
+            y = self.mm_to_pixels(2)
+        elif "top" in alignment:
+            text_alignment = "center"
+            x = (CANVAS_W - TEXT_W)/2
+            y = self.mm_to_pixels(2)
+        else:
+            text_alignment = "center"
+            x = (CANVAS_W - TEXT_W)/2
+            y = CANVAS_H - TEXT_H - self.mm_to_pixels(4)
+        
+        return (x, y), text_alignment
         
 
