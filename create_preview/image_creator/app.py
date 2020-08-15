@@ -3,12 +3,13 @@ import importlib
 import json
 import os
 
-resources_path = os.path.join(os.getcwd(), "create-preview", "resources")
+resources_path = os.path.join(os.getcwd(), "create_preview", "resources")
 
 # importing config
 with open(os.path.join(resources_path, "config.json")) as config_json:
     data = json.load(config_json)
 
+CONFIG_DATA = data
 
 class ImageCreator(object):
     def __init__(self):
@@ -24,7 +25,7 @@ class ImageCreator(object):
     def set_font_type(self, font_type_string):
         status = {}
         if font_type_string in data["font-types"].keys():
-            self.font_type = ImageFont.load(os.path.join(resources_path, data["font-types"][font_type_string]))
+            self.font_type = ImageFont.truetype(os.path.join(resources_path, data["font-types"][font_type_string]))
             status["error"] = False
         else:
             status["error"] = True
@@ -50,7 +51,7 @@ class ImageCreator(object):
             status["error"] = True
             status["message"] = "paper_type must be set before paper_color"
         else:
-            if paper_color_string in data["font-types"].keys():
+            if paper_color_string in data[self.paper_type].keys():
                 self.paper_color = os.path.join(resources_path, data[self.paper_type][paper_color_string])
                 status["error"] = False
             else:
@@ -77,13 +78,13 @@ class ImageCreator(object):
             status["error"] = False
         else:
             status["error"] = True
-            status["message"] = "Invalud text_color"
+            status["message"] = "Invalid text_color"
         return status
     
     # Setting Quantity
     def set_quantity(self, quantity):
         status = {}
-        if quantity in data["quantities"]:
+        if int(quantity) in data["quantities"]:
             self.quantity = quantity
             status["error"] = False
         else:
@@ -105,6 +106,7 @@ class ImageCreator(object):
         
         return status
     
+    # Setting all values
     def set_all(self, params):
         all_statuses = []
         response = {}
@@ -113,7 +115,7 @@ class ImageCreator(object):
         all_statuses.append(self.set_paper_type(params["paper_type"]))
         all_statuses.append(self.set_paper_color(params["paper_color"]))
         all_statuses.append(self.set_alignment(params["alignment"]))
-        all_statuses.append(self.set_text_color(params["alignment"]))
+        all_statuses.append(self.set_text_color(params["text_color"]))
         all_statuses.append(self.set_quantity(params["quantity"]))
         all_statuses.append(self.set_lines(params["lines"]))
 
@@ -125,6 +127,10 @@ class ImageCreator(object):
         else:
             response["error"] = False
 
-        return response        
+        return response
+
+    # Create image using values
+    def generate_image(self):
+        print("This is where the image is generated")        
         
 

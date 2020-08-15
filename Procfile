@@ -1,1 +1,1 @@
-web: gunicorn app:run()
+web: gunicorn create_preview:create_app()

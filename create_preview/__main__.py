@@ -1,4 +1,4 @@
-from create_preview import app
+from create_preview import create_app
 
 if __name__ == "__main__":
-    app.run()
+    create_app().run()

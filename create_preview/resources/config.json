@@ -1,9 +1,9 @@
 {
     "font-types":{
-        "berhard": "fonts/bernhard.tff",
-        "gabriola": "fonts/gabriola.tff",
-        "garamond": "fonts/garamond.tff",
-        "shelley_allegro": "fonts/shelley_allegro.tff"
+        "bernhard": "fonts/bernhard.ttf",
+        "gabriola": "fonts/gabriola.ttf",
+        "garamond": "fonts/garamond.ttf",
+        "shelley_allegro": "fonts/shelley_allegro.ttf"
     },
     "a5_paper":{
         "oxford_cream": "A5_images/A5-OxfordCream-2.png",
@@ -34,5 +34,17 @@
         "brown": "#311313",
         "navy": "#002045"
     },
-    "quantities": [100, 20, 40, 50, 80]
+    "quantities": [100, 40, 50, 80],
+    "paper_size": {
+        "a5": {
+            "w": 420,
+            "h": 595,
+            "dpi": 72
+        },
+        "a6": {
+            "w": 298,
+            "h": 420,
+            "dpi": 72
+        }
+    }
 }
