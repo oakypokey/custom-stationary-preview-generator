@@ -1,5 +1,4 @@
 from flask import Flask, Response, request
-import base64
 from create_preview.image_creator.app import ImageCreator
 import json
 from create_preview.validation_schema import ImagePreviewInputSchema
@@ -27,10 +26,11 @@ def generate_image():
     if factory_errors["error"]:
         return Response(json.dumps(factory_errors["statuses"]), mimetype="application/json", status=400)
 
-    preview_image = preview.generate_image()
-    print(preview_image)
+    preview_image = preview.generate_image().decode('utf-8')
 
-    return Response(preview_image, status=200)
+    payload = '<img src="data:image/png;base64, {preview_image}" alt="Preview Image" />'.format(preview_image=preview_image)
+
+    return Response(payload, status=200)
 
 def create_app():
     return APP

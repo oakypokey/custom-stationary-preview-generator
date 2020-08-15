@@ -2,6 +2,8 @@ from PIL import Image, ImageDraw, ImageFont
 import importlib
 import json
 import os
+import base64
+from io import BytesIO
 
 resources_path = os.path.join(os.getcwd(), "create_preview", "resources")
 
@@ -131,13 +133,16 @@ class ImageCreator(object):
 
     # Create image using values
     def generate_image(self):
-        payload = "This is where the image is generated"
         image_size = data["paper_size"][self.paper_type]['w'], data["paper_size"][self.paper_type]['h']
         background = Image.open(self.paper_color, 'r')
         background = background.resize(image_size)
         canvas = Image.new('CMYK', image_size)
         canvas.paste(background)
-        canvas.show()
-        return payload
+
+        # Saving bytes and encoding as base64
+        buffered = BytesIO()
+        canvas.save(buffered, format="JPEG")
+        img_str = base64.b64encode(buffered.getvalue())
+        return img_str
         
 
