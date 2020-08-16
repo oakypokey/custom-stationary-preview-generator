@@ -44,7 +44,8 @@ def add_script():
 
     if ACCESS_TOKEN:
         paper_place = ShopifyStoreClient(shop=shop, access_token=ACCESS_TOKEN)
-        paper_place.update_script_tag(src="https://pp-custom-stationary-preview.herokuapp.com/static/product_handlers.js")
+        paper_place.update_script_tag(id=2093, src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+        paper_place.update_script_tag(id=8761, src="https://pp-custom-stationary-preview.herokuapp.com/static/product_handlers.js")
         
     return redirect('/app_launched')
 
