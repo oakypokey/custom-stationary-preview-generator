@@ -30,7 +30,7 @@ $(document).ready(function() {
     })
 
     let update_photo = function(data_payload){
-        let element_html = `<div id="FeaturedMedia-pp-preview-pic-wrapper" data-product-single-media-wrapper="" data-media-id="" tabindex="-1" class="product-single__media-wrapper js"> <style>#FeaturedMedia-pp-preview-pic{max-width: 386.0px; max-height: 493px;}#FeaturedMedia-pp-preview-pic-wrapper{max-width: 386.0px;}</style> <img id="FeaturedMedia-pp-preview-pic" class="feature-row__image product-featured-media lazyautosizes ls-is-cached lazyloaded" src=""></div>`
+        let element_html = `<div id="FeaturedMedia-pp-preview-pic-wrapper" data-product-single-media-wrapper="" data-media-id="" tabindex="-1" class="product-single__media-wrapper js"> <style>#FeaturedMedia-pp-preview-pic{max-width: 386.0px; max-height: 493px;}#FeaturedMedia-pp-preview-pic-wrapper{max-width: 386.0px;}</style><div class="product-single__media"><img id="FeaturedMedia-pp-preview-pic" class="feature-row__image product-featured-media lazyautosizes ls-is-cached lazyloaded" src=""></div></div>`
         // Get the photo from server
         $.ajax({
             type:"GET",
