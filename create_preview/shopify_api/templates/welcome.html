@@ -1,12 +1,18 @@
 <!doctype html>
 <title>Welcome to my Shopify app!</title>
 {% if tags %}
+{% if shop %}
+<h1> Welcome {{ shop }}</h1>
+{% endif %}
 <ul>
   {% for tag in tags %}
   <li> {{ tag }} </li>
   {% endfor %}
 </ul>
 {% else %}
+  {% if shop %}
+  <h1> Welcome {{ shop }}</h1>
+  {% endif %}
   <h1> Click the link below to enable the app</h1>
-  <a href="https://pp-custom-stationary-preview.herokuapp.com/add_script"> Enable </a>
+  <a href="https://pp-custom-stationary-preview.herokuapp.com/add_script&shop=the-paper-place-australia.myshopify.com"> Enable </a>
 {% endif %}
