@@ -27,6 +27,7 @@ def app_launched():
     if ACCESS_TOKEN:
         paper_place = ShopifyStoreClient(shop=shop, access_token=ACCESS_TOKEN)
         paper_place_script_tags = paper_place.get_script_tags()
+        print(paper_place_script_tags)
         return render_template('welcome.html', tags=paper_place_script_tags)
 
     # The NONCE is a single-use random value we send to Shopify so we know the next call from Shopify is valid (see #app_installed)
