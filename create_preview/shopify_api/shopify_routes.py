@@ -38,7 +38,6 @@ def app_launched():
     return redirect(redirect_url, code=302)
 
 @APP.route('/add_script', methods=['GET'])
-@helpers.verify_web_call
 def add_script():
     shop = request.args.get('shop')
     global ACCESS_TOKEN, NONCE
