@@ -12,18 +12,19 @@ import create_preview.shopify_api.shopify_routes
 def home():
     return Response("Hello")
 
-@APP.route('/generate-image', methods=['POST'])
+@APP.route('/generate-image', methods=['GET'])
 def generate_image():
     # First set of validation
     input_schema = ImagePreviewInputSchema()
-    request_errors = input_schema.validate(request.json)
+    json_payload = json.loads(request.args.get('json'))
+    request_errors = input_schema.validate(json_payload)
     
     if request_errors:
         return Response(json.dumps(request_errors), mimetype="application/json", status=400)
 
     # Create new ImageCreator
     preview = ImageCreator()
-    factory_errors = preview.set_all(request.json)
+    factory_errors = preview.set_all(json_payload)
 
     # Throw any errors from ImageCreator
     if factory_errors["error"]:

@@ -33,10 +33,8 @@ $(document).ready(function() {
         let element_html = `<div id="FeaturedMedia-pp-preview-pic-wrapper" data-product-single-media-wrapper="" data-media-id="" tabindex="-1" class="product-single__media-wrapper js"> <style>#FeaturedMedia-pp-preview-pic{max-width: 386.0px; max-height: 493px;}#FeaturedMedia-pp-preview-pic-wrapper{max-width: 386.0px;}</style> <img id="FeaturedMedia-pp-preview-pic" class="feature-row__image product-featured-media lazyautosizes ls-is-cached lazyloaded" src=""></div>`
         // Get the photo from server
         $.ajax({
-            type:"POST",
-            url: "https://the-paper-place-australia.myshopify.com/apps/generate-image",
-            data: data_payload,
-            dataType: "json",
+            type:"GET",
+            url: "https://the-paper-place-australia.myshopify.com/apps/generate-image?json="+JSON.stringify(data_payload),
             success: function(returned_data){
                 console.log(returned_data)
                 if($("#FeaturedMedia-pp-preview-pic").length){
