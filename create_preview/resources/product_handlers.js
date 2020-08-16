@@ -34,7 +34,7 @@ $(document).ready(function() {
         // Get the photo from server
         $.ajax({
             type:"POST",
-            url: "https://pp-custom-stationary-preview.herokuapp.com/generate-image",
+            url: "https://the-paper-place-australia.myshopify.com/apps/generate-image",
             data: data_payload,
             dataType: "json",
             success: function(returned_data){
