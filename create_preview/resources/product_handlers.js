@@ -15,7 +15,7 @@ $(document).ready(function() {
             "font_type": data_content.filter((e) => {return e.name == "fonts"})[0].value,
             "paper_type": convert_paper_size(paper_size.val()),
             "paper_color": convert_paper_stock(paper_stock.val()),
-            "alignment": "right_left",
+            "alignment": data_content.filter((e) => {return e.name =="alignment"})[0].value,
             "text_color": data_content.filter((e) => {return e.name == "text-color"})[0].value,
             "quantity": quantity.val(),
             "lines": {
@@ -50,7 +50,6 @@ $(document).ready(function() {
         }).fail(function() {
             alert("There was an error generating a preview. Please try again.")
         }).always(function(){
-            alert("All done.")
         })
         
         //Check to see if image already exists
