@@ -1,7 +1,11 @@
 <!doctype html>
 <title>Welcome to my Shopify app!</title>
-{% if shop %}
-  <h1>Hello {{ shop }}!</h1>
+{% if tags %}
+<ul>
+  {% for tag in tags %}
+  <li> {{ tag }} </li>
+  {% endfor %}
+</ul>
 {% else %}
   <h1>Hello, World!</h1>
 {% endif %}
