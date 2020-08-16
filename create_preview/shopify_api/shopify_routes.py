@@ -5,10 +5,10 @@ import logging
 
 from flask import Flask, redirect, request, render_template
 
-import helpers
-from shopify_client import ShopifyStoreClient
+import create_preview.shopify_api.helpers
+from create_preview.shopify_api.shopify_client import ShopifyStoreClient
 
-from config import WEBHOOK_APP_UNINSTALL_URL
+from create_preview.shopify_api.config import WEBHOOK_APP_UNINSTALL_URL
 
 from create_preview import APP
 
