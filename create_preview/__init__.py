@@ -28,7 +28,7 @@ def generate_image():
 
     preview_image = preview.generate_image().decode('utf-8')
 
-    payload = '<img src="data:image/png;base64, {preview_image}" alt="Preview Image" />'.format(preview_image=preview_image)
+    payload = 'data:image/png;base64, {preview_image}'.format(preview_image=preview_image)
 
     return Response(payload, status=200)
 
