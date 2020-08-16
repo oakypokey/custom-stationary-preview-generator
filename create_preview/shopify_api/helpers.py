@@ -8,7 +8,7 @@ import base64
 import hashlib
 from flask import request, abort
 
-from config import SHOPIFY_SECRET, SHOPIFY_API_KEY, INSTALL_REDIRECT_URL, APP_NAME
+from create_preview.shopify_api.config import SHOPIFY_SECRET, SHOPIFY_API_KEY, INSTALL_REDIRECT_URL, APP_NAME
 
 
 def generate_install_redirect_url(shop: str, scopes: List, nonce: str, access_mode: List):
