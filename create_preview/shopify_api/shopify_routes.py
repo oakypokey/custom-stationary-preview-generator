@@ -36,6 +36,17 @@ def app_launched():
     redirect_url = helpers.generate_install_redirect_url(shop=shop, scopes=SCOPES, nonce=NONCE, access_mode=ACCESS_MODE)
     return redirect(redirect_url, code=302)
 
+@APP.route('/add_script')
+@helpers.verify_web_call
+def add_script():
+    shop = request.args.get('shop')
+    global ACCESS_TOKEN, NONCE
+
+    if ACCESS_TOKEN:
+        paper_place = ShopifyStoreClient(shop=shop, access_token=ACCESS_TOKEN)
+        paper_place.update_script_tag(src="https://pp-custom-stationary-preview.herokuapp.com/static/product_handlers.js")
+        
+    return redirect('/app_launched')
 
 @APP.route('/app_installed', methods=['GET'])
 @helpers.verify_web_call
