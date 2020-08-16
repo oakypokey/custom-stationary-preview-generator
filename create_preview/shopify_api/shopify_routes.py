@@ -23,7 +23,7 @@ SCOPES = ['write_script_tags']  # https://shopify.dev/docs/admin-api/access-scop
 def app_launched():
     shop = request.args.get('shop')
     hmac = request.args.get('hmac')
-    state = request.args.get('state')
+    session = request.args.get('session')
     locale = request.args.get('locale')
     timestamp = request.args.get('timestamp')
 
@@ -33,7 +33,7 @@ def app_launched():
         paper_place = ShopifyStoreClient(shop=shop, access_token=ACCESS_TOKEN)
         paper_place_script_tags = paper_place.get_script_tags()
         print(paper_place_script_tags)
-        return render_template('welcome.html', tags=paper_place_script_tags, shop=shop, hmac=hmac, state=state, locale=locale, timestamp=timestamp)
+        return render_template('welcome.html', tags=paper_place_script_tags, shop=shop, hmac=hmac, session=session, locale=locale, timestamp=timestamp)
 
     # The NONCE is a single-use random value we send to Shopify so we know the next call from Shopify is valid (see #app_installed)
     #   https://en.wikipedia.org/wiki/Cryptographic_nonce
@@ -44,6 +44,11 @@ def app_launched():
 @APP.route('/add_script', methods=['GET'])
 def add_script():
     shop = request.args.get('shop')
+    hmac = request.args.get('hmac')
+    session = request.args.get('session')
+    locale = request.args.get('locale')
+    timestamp = request.args.get('timestamp')
+
     global ACCESS_TOKEN, NONCE
 
     if ACCESS_TOKEN:
@@ -51,7 +56,7 @@ def add_script():
         paper_place.update_script_tag(id=2093, src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
         paper_place.update_script_tag(id=8761, src="https://pp-custom-stationary-preview.herokuapp.com/static/product_handlers.js")
         
-    return redirect('/app_launched')
+    return redirect('/app_launched?hmac={hmac}&locale={locale}&session={session}&shop={shop}&timestamp={timestamp}'.format(hmac=hmac,locale=locale,session=session,shop=shop,timestamp=timestamp))
 
 @APP.route('/app_installed', methods=['GET'])
 @helpers.verify_web_call
