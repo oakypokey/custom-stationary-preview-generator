@@ -3,6 +3,7 @@ from create_preview.image_creator.app import ImageCreator
 import json
 from create_preview.validation_schema import ImagePreviewInputSchema
 import uuid
+import urllib.parse
 
 APP = Flask(__name__, static_url_path='', static_folder='resources', template_folder='shopify_api/templates')
 
@@ -16,7 +17,9 @@ def home():
 def generate_image():
     # First set of validation
     input_schema = ImagePreviewInputSchema()
-    json_payload = json.loads(request.args.get('json'))
+    json_payload = json.loads(urllib.parse.unquote(request.args.get('json')))
+    print(request.args.get('json'))
+    print(json_payload)
     request_errors = input_schema.validate(json_payload)
     
     if request_errors:
