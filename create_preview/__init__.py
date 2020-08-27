@@ -4,8 +4,11 @@ import json
 from create_preview.validation_schema import ImagePreviewInputSchema
 import uuid
 import urllib.parse
+from flask_cors import CORS
+
 
 APP = Flask(__name__, static_url_path='', static_folder='resources', template_folder='shopify_api/templates')
+cors = CORS(APP, resources={r"/*": {"origins": ["https://thepaperplace.com.au", "https://the-paper-place-australia.myshopify.com"]}})
 
 import create_preview.shopify_api.shopify_routes
 
