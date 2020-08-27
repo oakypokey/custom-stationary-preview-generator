@@ -2,48 +2,6 @@ jQuery(function($){
     $(document).ready(function() {
         if($("body.postid-8388").length){
             let preview_pic = $(".woocommerce-product-gallery__image")
-        let data_content = [
-            {
-                "name": "fonts",
-                "value": $("#font_type").value
-            },
-            {
-                "name": "paper_type",
-                "value": $("#attribute_pa_select-paper-size").children("li.selected")[0].value
-            },
-            {
-                "name": "paper_stock",
-                "value": $("#attribute_pa_select-paper-stock").children("li.selected")[0].value
-            },
-            {
-                "name": "alignment",
-                "value": $("#alignment").value
-            },
-            {
-                "name": "text_color",
-                "value": $("#text_color").value
-            },
-            {
-                "name": "quantity",
-                "value": $("#attribute_pa_select-quantity").children("li.selected")[0].value
-            },
-            {
-                "name": "line1",
-                "value": $("line1").value
-            },
-            {
-                "name": "line2",
-                "value": $("#line2").value
-            },
-            {
-                "name": "line3",
-                "value": $("#line3").value
-            },
-            {
-                "name": "line4",
-                "value": $("#line4").value
-            },
-        ]
         
         let customization_form = $("div.form-row")
 
@@ -52,6 +10,48 @@ jQuery(function($){
 
         show_preview.click(function(e) {
             e.preventDefault()
+            let data_content = [
+                {
+                    "name": "fonts",
+                    "value": $("#font_type").value
+                },
+                {
+                    "name": "paper_type",
+                    "value": $("#attribute_pa_select-paper-size").children("li.selected")[0].value
+                },
+                {
+                    "name": "paper_stock",
+                    "value": $("#attribute_pa_select-paper-stock").children("li.selected")[0].value
+                },
+                {
+                    "name": "alignment",
+                    "value": $("#alignment").value
+                },
+                {
+                    "name": "text_color",
+                    "value": $("#text_color").value
+                },
+                {
+                    "name": "quantity",
+                    "value": $("#attribute_pa_select-quantity").children("li.selected")[0].value
+                },
+                {
+                    "name": "line1",
+                    "value": $("line1").value
+                },
+                {
+                    "name": "line2",
+                    "value": $("#line2").value
+                },
+                {
+                    "name": "line3",
+                    "value": $("#line3").value
+                },
+                {
+                    "name": "line4",
+                    "value": $("#line4").value
+                },
+            ]
             let data_payload = {
                 "font_type": data_content.filter((e) => {return e.name == "fonts"})[0].value,
                 "paper_type": data_content.filter((e) => {return e.name == "paper_type"})[0].value,
