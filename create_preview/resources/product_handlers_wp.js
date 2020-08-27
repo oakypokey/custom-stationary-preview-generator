@@ -45,7 +45,7 @@ jQuery(function($){
                 },
                 {
                     "name": "line1",
-                    "value": $("line1").val()
+                    "value": $("#line1").val()
                 },
                 {
                     "name": "line2",
