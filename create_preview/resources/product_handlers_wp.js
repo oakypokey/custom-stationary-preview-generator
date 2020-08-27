@@ -57,7 +57,7 @@ jQuery(function($){
                 "paper_type": data_content.filter((e) => {return e.name == "paper_type"})[0].value,
                 "paper_color": data_content.filter((e) => {return e.name == "paper_stock"})[0].value,
                 "alignment": data_content.filter((e) => {return e.name =="alignment"})[0].value,
-                "text_color": data_content.filter((e) => {return e.name == "text-color"})[0].value,
+                "text_color": data_content.filter((e) => {return e.name == "text_color"})[0].value,
                 "quantity": data_content.filter((e) => {return e.name == "quantity"})[0].value,
                 "lines": {
                     "line1": data_content.filter((e) => {return e.name == "line1"})[0].value,
