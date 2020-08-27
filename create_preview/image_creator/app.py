@@ -165,6 +165,7 @@ class ImageCreator(object):
         # Saving bytes and encoding as base64
         buffered = BytesIO()
         canvas.save(buffered, format="JPEG")
+        canvas.show()
         img_str = base64.b64encode(buffered.getvalue())
         return img_str
     

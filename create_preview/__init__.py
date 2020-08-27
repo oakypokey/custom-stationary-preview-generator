@@ -43,5 +43,9 @@ def generate_image():
 def product_handler():
     return APP.send_static_file("product_handlers.js")
 
+@APP.route('/static/product_handlers_wp.js')
+def product_handler_wp():
+    return APP.send_static_file("product_handlers_wp.js")
+
 def create_app():
     return APP
