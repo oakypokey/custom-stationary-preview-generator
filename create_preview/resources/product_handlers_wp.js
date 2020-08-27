@@ -8,48 +8,56 @@ jQuery(function($){
         customization_form.append(`<button id="show_preview"> Show Preview </button>`)
         let show_preview = $("#show_preview")
 
+        let getAttributeFromSelect = function(object) {
+            let selected = object.children().filter(function(){
+                return $(this).attr("selected") === "selected"
+            })
+
+            return selected.length > 0 ? $(selected[0]).data("optionid") : ["None"]
+        }
+
         show_preview.click(function(e) {
             e.preventDefault()
             let data_content = [
                 {
                     "name": "fonts",
-                    "value": $("#font_type").value
+                    "value": getAttributeFromSelect($("#font_type"))
                 },
                 {
                     "name": "paper_type",
-                    "value": $("#attribute_pa_select-paper-size").children("li.selected")[0].value
+                    "value": $($("#attribute_pa_select-size").children("li.selected")[0]).data("value")
                 },
                 {
                     "name": "paper_stock",
-                    "value": $("#attribute_pa_select-paper-stock").children("li.selected")[0].value
+                    "value": $($("#attribute_pa_select-stock").children("li.selected")[0]).data("value")
                 },
                 {
                     "name": "alignment",
-                    "value": $("#alignment").value
+                    "value": getAttributeFromSelect($("#alignment"))
                 },
                 {
                     "name": "text_color",
-                    "value": $("#text_color").value
+                    "value": getAttributeFromSelect($("#text_color"))
                 },
                 {
                     "name": "quantity",
-                    "value": $("#attribute_pa_select-quantity").children("li.selected")[0].value
+                    "value": parseInt($($("#attribute_pa_select-quantity").children("li.selected")[0]).data("value").split("-")[0])
                 },
                 {
                     "name": "line1",
-                    "value": $("line1").value
+                    "value": $("line1").val()
                 },
                 {
                     "name": "line2",
-                    "value": $("#line2").value
+                    "value": $("#line2").val()
                 },
                 {
                     "name": "line3",
-                    "value": $("#line3").value
+                    "value": $("#line3").val()
                 },
                 {
                     "name": "line4",
-                    "value": $("#line4").value
+                    "value": $("#line4").val()
                 },
             ]
             let data_payload = {
