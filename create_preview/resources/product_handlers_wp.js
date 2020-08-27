@@ -25,11 +25,11 @@ jQuery(function($){
                 },
                 {
                     "name": "paper_type",
-                    "value": $($("#attribute_pa_select-paper-size").children("li.selected")[0]).data("value")
+                    "value": paper_type_conv($($("#attribute_pa_select-paper-size").children("li.selected")[0]).data("value"))
                 },
                 {
                     "name": "paper_stock",
-                    "value": $($("#attribute_pa_select-paper-stock").children("li.selected")[0]).data("value")
+                    "value": paper_stock_conv($($("#attribute_pa_select-paper-stock").children("li.selected")[0]).data("value"))
                 },
                 {
                     "name": "alignment",
@@ -103,7 +103,7 @@ jQuery(function($){
         }
         }
         
-        let paper_type_conv = function(paper_type){
+        let paper_stock_conv = function(paper_stock){
             switch(paper_type){
                 case "oxfordcream": return "oxford_creme";
                 case "oxfordwhite": return "oxford_white";
@@ -112,6 +112,13 @@ jQuery(function($){
                 case "riveswhite": return "rives_white";
                 case "speckletone": return "speckletone";
                 case "superfinewhite": return "superfine_white";
+            }
+        }
+
+        let paper_type_conv = function(paper_type){
+            switch(paper_type){
+                case "a5-paper": return "a5_paper";
+                case "a6-card": return "a6_paper";
             }
         }
     })
