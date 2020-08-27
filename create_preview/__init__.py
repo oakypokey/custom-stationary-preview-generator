@@ -4,11 +4,10 @@ import json
 from create_preview.validation_schema import ImagePreviewInputSchema
 import uuid
 import urllib.parse
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 
 APP = Flask(__name__, static_url_path='', static_folder='resources', template_folder='shopify_api/templates')
-cors = CORS(APP, resources={r"/*": {"origins": ["https://thepaperplace.com.au", "https://the-paper-place-australia.myshopify.com"]}})
 
 import create_preview.shopify_api.shopify_routes
 
@@ -17,6 +16,7 @@ def home():
     return Response("Hello")
 
 @APP.route('/generate-image', methods=['GET'])
+@cross_origin()
 def generate_image():
     # First set of validation
     input_schema = ImagePreviewInputSchema()
@@ -43,10 +43,12 @@ def generate_image():
     return Response(payload, status=200)
 
 @APP.route('/static/product_handlers.js')
+@cross_origin()
 def product_handler():
     return APP.send_static_file("product_handlers.js")
 
 @APP.route('/static/product_handlers_wp.js')
+@cross_origin()
 def product_handler_wp():
     return APP.send_static_file("product_handlers_wp.js")
 
