@@ -102,5 +102,17 @@ jQuery(function($){
             })
         }
         }
+        
+        let paper_type_conv = function(paper_type){
+            switch(paper_type){
+                case "oxfordcream": return "oxford_creme";
+                case "oxfordwhite": return "oxford_white";
+                case "rivessand": return "rives_sand";
+                case "riveswheat": return "rives_wheat";
+                case "riveswhite": return "rives_white";
+                case "speckletone": return "speckletone";
+                case "superfinewhite": return "superfine_white";
+            }
+        }
     })
 })
