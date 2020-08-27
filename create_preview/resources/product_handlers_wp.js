@@ -25,11 +25,11 @@ jQuery(function($){
                 },
                 {
                     "name": "paper_type",
-                    "value": $($("#attribute_pa_select-size").children("li.selected")[0]).data("value")
+                    "value": $($("#attribute_pa_select-paper-size").children("li.selected")[0]).data("value")
                 },
                 {
                     "name": "paper_stock",
-                    "value": $($("#attribute_pa_select-stock").children("li.selected")[0]).data("value")
+                    "value": $($("#attribute_pa_select-paper-stock").children("li.selected")[0]).data("value")
                 },
                 {
                     "name": "alignment",
