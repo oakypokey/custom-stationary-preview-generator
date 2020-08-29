@@ -91,7 +91,7 @@ jQuery(function($){
                         $("#FeaturedMedia-pp-preview-pic").attr('src', returned_data)
                     } else {
                         preview_pic.children().css("display", "none")
-                        preview_pic.append(element_html)
+                        preview_pic.prepend(element_html)
                         $("#FeaturedMedia-pp-preview-pic").attr('src', returned_data)
                     }
                 }
