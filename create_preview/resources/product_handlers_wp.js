@@ -79,7 +79,7 @@ jQuery(function($){
         })
 
         let update_photo = function(data_payload){
-            let element_html = `<div class="woocommerce-product-gallery__image"><img src="" id="FeaturedMedia-pp-preview-pic" class="wp-post-image" width="400" height="510"></div>`
+            let element_html = `<div class="woocommerce-product-gallery__image"><img src="" id="FeaturedMedia-pp-preview-pic" class="wp-post-image"></div>`
             // Get the photo from server
             $.ajax({
                 type:"GET",
@@ -87,6 +87,7 @@ jQuery(function($){
                 success: function(returned_data){
                     console.log(returned_data)
                     if($("#FeaturedMedia-pp-preview-pic").length){
+                        $("#FeaturedMedia-pp-preview-pic").removeAttr("width height data-src srcset data-o_srceset sizes data-large_image data-o_src data-o_height data-o_width data-o_srcscet data-o_sizes sizez data-o_title data-o_data-caption data-caption data-o_alt data-o_data-src data-o_data-large_image data-o_data-large_image data-o_data-large_image_width data-large_image_width data-o_data-large_image_height data-large_image_height")
                         $("#FeaturedMedia-pp-preview-pic").attr('src', returned_data)
                     } else {
                         preview_pic.children().css("display", "none")
@@ -95,7 +96,7 @@ jQuery(function($){
                     }
                 }
             }).done(function(){
-
+                $.featherlight($("#FeaturedMedia-pp-preview-pic"))
             }).fail(function() {
                 alert("There was an error generating a preview. Please try again.")
             }).always(function(){
