@@ -1,7 +1,7 @@
 jQuery(function($){
     $(document).ready(function() {
         if($("body.postid-8388").length){
-            let preview_pic = $(".woocommerce-product-gallery__image__wrapper")
+            let preview_pic = $(".woocommerce-product-gallery__wrapper")
         
         let customization_form = $("div.form-row")
 
