@@ -87,7 +87,7 @@ jQuery(function($){
                 success: function(returned_data){
                     console.log(returned_data)
                     if($("#FeaturedMedia-pp-preview-pic").length){
-                        $("#FeaturedMedia-pp-preview-pic").removeAttr("width height data-src srcset data-o_srceset sizes data-large_image data-o_src data-o_height data-o_width data-o_srcscet data-o_sizes sizez data-o_title data-o_data-caption data-caption data-o_alt data-o_data-src data-o_data-large_image data-o_data-large_image data-o_data-large_image_width data-large_image_width data-o_data-large_image_height data-large_image_height")
+                        $("#FeaturedMedia-pp-preview-pic").removeAttr("width height style data-src srcset data-o_srcset sizes data-large_image data-o_src data-o_height data-o_width data-o_srcscet data-o_sizes sizez data-o_title data-o_data-caption data-caption data-o_alt data-o_data-src data-o_data-large_image data-o_data-large_image data-o_data-large_image_width data-large_image_width data-o_data-large_image_height data-large_image_height")
                         $("#FeaturedMedia-pp-preview-pic").attr('src', returned_data)
                     } else {
                         preview_pic.children().css("display", "none")
