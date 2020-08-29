@@ -146,7 +146,9 @@ class ImageCreator(object):
 
         font = ImageFont.truetype(self.font_type, font_size)
         if "bottom" in self.alignment:
-            text_content = ", ".join(self.lines.values())
+            text_values = [line for line in self.lines.values() if not line == ""]
+            print("BOTTOM:", text_values)
+            text_content = ", ".join(text_values)
             
         else: 
             text_content = "\n".join(self.lines.values())
