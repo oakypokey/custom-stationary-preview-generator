@@ -105,7 +105,7 @@ jQuery(function($){
         
         let paper_stock_conv = function(paper_stock){
             switch(paper_stock){
-                case "oxfordcream": return "oxford_creme";
+                case "oxfordcream": return "oxford_cream";
                 case "oxfordwhite": return "oxford_white";
                 case "rivessand": return "rives_sand";
                 case "riveswheat": return "rives_wheat";
