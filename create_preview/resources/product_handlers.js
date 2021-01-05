@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     let paper_size = $("#ProductSelect-product-template-option-0")
     let paper_stock = $("#ProductSelect-product-template-option-1")
-    let quantity = $("ProductSelect-product-template-option-2")
+    let quantity = $("#ProductSelect-product-template-option-2")
 
     show_preview.click(function(e) {
         e.preventDefault()
