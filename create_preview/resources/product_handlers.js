@@ -3,9 +3,9 @@ $(document).ready(function() {
     let show_preview = $("#show_preview")
     let data = $("#custom_options_form :input")
 
-    let paper_size = $("#SingleOptionSelector-0")
-    let paper_stock = $("#SingleOptionSelector-1")
-    let quantity = $("#SingleOptionSelector-2")
+    let paper_size = $("#ProductSelect-product-template-option-0")
+    let paper_stock = $("#ProductSelect-product-template-option-1")
+    let quantity = $("ProductSelect-product-template-option-2")
 
     show_preview.click(function(e) {
         e.preventDefault()
