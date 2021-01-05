@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let preview_pic = $(".product-single__media-group")
+    let preview_pic = $(".product-single__photos")
     let show_preview = $("#show_preview")
     let data = $("#custom_options_form :input")
 
@@ -30,23 +30,38 @@ $(document).ready(function() {
     })
 
     let update_photo = function(data_payload){
-        let element_html = `<div id="FeaturedMedia-pp-preview-pic-wrapper" data-product-single-media-wrapper="" data-media-id="" tabindex="-1" class="product-single__media-wrapper js"> <style>#FeaturedMedia-pp-preview-pic{max-width: 386.0px; max-height: 493px;}#FeaturedMedia-pp-preview-pic-wrapper{max-width: 386.0px;}</style><div class="product-single__media"><img id="FeaturedMedia-pp-preview-pic" class="feature-row__image product-featured-media lazyautosizes ls-is-cached lazyloaded" src=""></div></div>`
+        let element_html = 
+        `<style>
+        #ProductImage-Featured {
+          max-width: 386px;
+          max-height: 493px;
+        }
+        #ProductImageWrapper-Featured {
+          max-width: 386px;
+        }
+        </style>
+        
+        <div id="ProductImageWrapper-Featured" class="product-single__image-wrapper supports-js zoom-lightbox" data-image-id="">
+        <div style="padding-top:127.7202073%;">
+          <img id="ProductImage-Featured" class="product-single__image lazyautosizes lazyloaded" src="">
+        </div>
+      </div>`
         // Get the photo from server
         $.ajax({
             type:"GET",
             url: "https://the-paper-place-australia.myshopify.com/apps/generate-image/generate-image?json="+encodeURIComponent(JSON.stringify(data_payload)),
             success: function(returned_data){
                 console.log(returned_data)
-                if($("#FeaturedMedia-pp-preview-pic").length){
-                    $("#FeaturedMedia-pp-preview-pic").attr('src', returned_data)
+                if($("#ProductImageWrapper-Featured").length){
+                    $("#ProductImage-Featured").attr('src', returned_data)
                 } else {
                     preview_pic.append(element_html)
-                    $("#FeaturedMedia-pp-preview-pic").attr('src', returned_data)
+                    $("#ProductImage-Featured").attr('src', returned_data)
                 }
             }
         }).done(function(){
             preview_pic.children().addClass("hide")
-            $("#FeaturedMedia-pp-preview-pic-wrapper").removeClass("hide")
+            $("#ProductImageWrapper-Featured").removeClass("hide")
         }).fail(function() {
             alert("There was an error generating a preview. Please try again.")
         }).always(function(){
