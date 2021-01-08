@@ -9,11 +9,11 @@ $(document).ready(function() {
 
     let font_selector = $("#fonts")
 
-    font_selector.change(function() {
+    font_selector.on("change", function() {
         const value = font_selector.val()
         const font = convert_font(value)
 
-        font_selector.attr('font-family', font)
+        font_selector.css('font-family', font)
     })
 
     show_preview.click(function(e) {
@@ -39,20 +39,26 @@ $(document).ready(function() {
     })
 
     let showRelevant = function () {
-        let thumbs = $('#ProductThumbs')
+        let thumbs = $('#ProductThumbs').children()
         let size = $('#ProductSelect-p-stationery-template-option-0').val().toLowerCase()
        
-        thumbs.forEach(function(thumbnail) {
-            let thumbShow = thumbnail.children().get(0).attr('href').toLowerCase().indexOf(size) >= 0
+        thumbs.each(function(index, thumbnail) {
+            let thumbShow = $(this).children().attr('href').toLowerCase().indexOf(size) >= 0
             if (!thumbShow) {
-                thumbnail.attr("class", "hide")
+                $(this).css("margin-bottom", "0px")
+                $(this).find("a").attr("class", "hide")
+                $(this).find("img").attr("class", "hide")
+            } else {
+                $(this).css("margin-bottom", "30px")
+                $(this).find("a").removeAttr("class", "hide")
+                $(this).find("img").removeAttr("class", "hide")
             }
         })
     }
     
     let updateSelectorStyles = function(){
         let selectors = $('.selector-wrapper')
-        selectors.attr("style", "display: inline-block; margin-right: 10px;")
+        selectors.css({"display": "inline-block", "margin-right": "10px"})
     }
 
     let update_photo = function(data_payload){
@@ -132,21 +138,25 @@ $(document).ready(function() {
         }
     }
 
-    let updateClickable = function(event){
-        let node = event.target
-        if(node.attr('checked')){
-            node.attr('border-color', "#add8e6")
-        } else {
-            node.attr('border-color', "grey")
-        }
+    let updateClickable = function(){
+        selector = $(".cod_clickable")
+        selector.each(function(index, node) {
+            if($(this).children("input").prop('checked')?true:false){
+                $(this).css('border-color', "#add8e6")
+                $(this).css('border-style', "solid")
+                $(this).css('border-thickness', "3px")
+            } else {
+                $(this).css('border', "none")
+            }
+        })  
     }
 
     showRelevant();
     updateSelectorStyles();
     updateClickable();
 
-    $("#ProductSelect-p-stationery-template-option-0").change(showRelevant)
+    $("#ProductSelect-p-stationery-template-option-0").on("change", showRelevant)
 
-    $(".cod_clickable").addEventListener('change', updateClickable)
-    $(".cod_clickable").addEventListener('load', updateClickable)
+    $(".cod_clickable").on('change', updateClickable)
+    $(".cod_clickable").on('load', updateClickable)
 })
