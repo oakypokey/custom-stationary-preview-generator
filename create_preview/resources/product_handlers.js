@@ -9,13 +9,6 @@ $(document).ready(function() {
 
     let font_selector = $("#fonts")
 
-    let update_font_selector = function() {
-        const value = font_selector.val()
-        const font = convert_font(value)
-
-        font_selector.css('font-family', font)
-    }
-
     show_preview.click(function(e) {
         e.preventDefault()
         let data_content = data.serializeArray()
@@ -137,6 +130,13 @@ $(document).ready(function() {
             default: return 'Aria'
         }
     }
+    
+    let update_font_selector = function() {
+        const value = font_selector.val()
+        const font = convert_font(value)
+
+        font_selector.css('font-family', font)
+    }
 
     let updateClickable = function(){
         selector = $(".cod_clickable")
@@ -153,6 +153,8 @@ $(document).ready(function() {
 
     font_selector.on("load", update_font_selector)
     font_selector.on("change", update_font_selector)
+
+    updateSelectorStyles();
 
     $("#ProductSelect-p-stationery-template-option-0").on("load", showRelevant)
     $("#ProductSelect-p-stationery-template-option-0").on("change", showRelevant)
