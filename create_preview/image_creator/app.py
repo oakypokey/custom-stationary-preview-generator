@@ -154,7 +154,7 @@ class ImageCreator(object):
             payload_array = []
             
             for line in self.lines.values():
-                payload_array.append(upper(line))
+                payload_array.append(line.upper())
             text_content = "\n".join(payload_array)
 
         else: 
