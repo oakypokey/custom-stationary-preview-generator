@@ -149,6 +149,13 @@ class ImageCreator(object):
             text_values = [line for line in self.lines.values() if not line == ""]
             print("BOTTOM:", text_values)
             text_content = ", ".join(text_values)
+        
+        else if "bernhard" in self.font_type:
+            payload_array = []
+            
+            for line in self.lines.values():
+                payload_array.append(upper(line))
+            text_content = "\n".join(payload_array)
             
         else: 
             text_content = "\n".join(self.lines.values())

@@ -130,7 +130,7 @@ $(document).ready(function() {
             default: return 'Aria'
         }
     }
-    
+
     let update_font_selector = function() {
         const value = font_selector.val()
         const font = convert_font(value)
@@ -154,12 +154,14 @@ $(document).ready(function() {
     font_selector.on("load", update_font_selector)
     font_selector.on("change", update_font_selector)
 
-    updateSelectorStyles();
-
     $("#ProductSelect-p-stationery-template-option-0").on("load", showRelevant)
     $("#ProductSelect-p-stationery-template-option-0").on("change", showRelevant)
     
     $(".cod_clickable").on('load', updateClickable)
     $(".cod_clickable").on('change', updateClickable)
     
+    updateSelectorStyles();
+    update_font_selector();
+    showRelevant();
+    updateClickable();
 })
