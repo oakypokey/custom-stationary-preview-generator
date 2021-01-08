@@ -3,9 +3,18 @@ $(document).ready(function() {
     let show_preview = $("#show_preview")
     let data = $("#custom_options_form :input")
 
-    let paper_size = $("#ProductSelect-product-template-option-0")
-    let paper_stock = $("#ProductSelect-product-template-option-1")
-    let quantity = $("#ProductSelect-product-template-option-2")
+    let paper_size = $("#ProductSelect-p-stationery-template-option-0")
+    let paper_stock = $("#ProductSelect-p-stationery-template-option-1")
+    let quantity = $("#ProductSelect-p-stationery-template-option-2")
+
+    let font_selector = $("#fonts")
+
+    font_selector.change(function() {
+        const value = font_selector.val()
+        const font = convert_font(value)
+
+        font_selector.attr('font-family', font)
+    })
 
     show_preview.click(function(e) {
         e.preventDefault()
@@ -28,6 +37,23 @@ $(document).ready(function() {
 
         update_photo(data_payload)
     })
+
+    let showRelevant = function () {
+        let thumbs = $('#ProductThumbs')
+        let size = $('#ProductSelect-p-stationery-template-option-0').val().toLowerCase()
+       
+        thumbs.forEach(function(thumbnail) {
+            let thumbShow = thumbnail.children().get(0).attr('href').toLowerCase().indexOf(size) >= 0
+            if (!thumbShow) {
+                thumbnail.attr("class", "hide")
+            }
+        })
+    }
+    
+    let updateSelectorStyles = function(){
+        let selectors = $('.selector-wrapper')
+        selectors.attr("style", "display: inline-block; margin-right: 10px;")
+    }
 
     let update_photo = function(data_payload){
         let element_html = 
@@ -95,4 +121,32 @@ $(document).ready(function() {
             case "A6": return "a6_paper"
         }
     }
+
+    let convert_font = function(value) {
+        switch(value.toLowerCase()){
+            case 'bernhard': return 'b'
+            case 'garamond': return 'gar'
+            case 'gabriola': return 'gab'
+            case 'shelley_allegro': return 'shell'
+            default: return 'Aria'
+        }
+    }
+
+    let updateClickable = function(event){
+        let node = event.target
+        if(node.attr('checked')){
+            node.attr('border-color', "#add8e6")
+        } else {
+            node.attr('border-color', "grey")
+        }
+    }
+
+    showRelevant();
+    updateSelectorStyles();
+    updateClickable();
+
+    $("#ProductSelect-p-stationery-template-option-0").change(showRelevant)
+
+    $(".cod_clickable").addEventListener('change', updateClickable)
+    $(".cod_clickable").addEventListener('load', updateClickable)
 })

@@ -1,33 +1,38 @@
 <div id="custom_options_form">
-    <label> Enter your custom text: </label>
-    <input name="line1" type="text" placeholder="Line 1"> </input>
-    <input name="line2" type="text" placeholder="Line 2"> </input>
-    <input name="line3" type="text" placeholder="Line 3"> </input>
-    <input name="line4" type="text" placeholder="Line 4"> </input>
-    <br>
-    <label for="text-color">Choose a font color:</label>
-    <select id="text-color" name="text-color">
-      <option value="navy">Navy</option>
-      <option value="brown">Brown</option>
-      <option value="black">Black</option>
-    </select> 
-    <br>
-    <label for="fonts">Choose a font:</label>
+  <label>Enter your custom text: </label> 
+  <input placeholder="Line 1" type="text" name="line1"> 
+  <input placeholder="Line 2" type="text" name="line2"> 
+  <input placeholder="Line 3" type="text" name="line3"> 
+  <input placeholder="Line 4" type="text" name="line4"> 
+  <br>
+
+  <label for="text-color">Choose a font color:
+  <label class="cod_clickable" id="black_color" for="radio_black">
+    <input id="radio_black" type="radio" name="text-color" value="black" checked> 
+    Black </label>
+  <label class="cod_clickable" id="navy_color" for="radio_navy">
+    <input id="radio_navy" type="radio" name="text-color" value="navy"> 
+    Navy </label>
+  <label class="cod_clickable" id="brown_color" for="brown_radio"><input id="radio_brown" type="radio" name="text-color" value="brown"> 
+    Brown </label>
+  <br> 
+
+  <label for="fonts">Choose a font:</label>
     <select id="fonts" name="fonts">
-      <option value="bernhard">Bernhard</option>
-      <option value="gabriola">Gabriola</option>
-      <option value="garamond">Garmond</option>
-      <option value="shelley_allegro">Shelly Allegro</option>
+      <option id="font_b" value="bernhard">BERNHARD</option>
+      <option id="font_gab" value="gabriola">Gabriola</option>
+      <option id="font_gar" value="garamond">Garmond</option>
+    <option id="font_shell" value="shelley_allegro">Shelly Allegro</option>
     </select>
 
-    <label for="fonts">Alignment:</label>
+  <label for="alignment">Alignment:</label>
     <select id="alignment" name="alignment">
-        <option value="right_left">Right Left</option>
-        <option value="right_right">Right Right</option>
-        <option value="top">Top</option>
-        <option value="bottom">Bottom</option>
+      <option value="right_left">Right Left</option>
+      <option value="right_right">Right Right</option>
+      <option value="top">Top</option>
+      <option value="bottom">Bottom</option>
     </select>
-    <br>
-    <br>
-    <button id="show_preview"> Show Preview </button>
+  </label>
+  <br>
+  <button id="show_preview" class="btn btn--full btn--primary"> Show Preview </button>
 </div>
