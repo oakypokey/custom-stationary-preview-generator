@@ -156,7 +156,7 @@ class ImageCreator(object):
             for line in self.lines.values():
                 payload_array.append(upper(line))
             text_content = "\n".join(payload_array)
-            
+
         else: 
             text_content = "\n".join(self.lines.values())
 
@@ -190,7 +190,7 @@ class ImageCreator(object):
             else:
                 text_alignment = "right"
             
-            x = CANVAS_W - TEXT_W - self.mm_to_pixels(2) 
+            x = CANVAS_W - TEXT_W - self.mm_to_pixels(5) 
             y = self.mm_to_pixels(2)
         elif "top" in alignment:
             text_alignment = "center"
