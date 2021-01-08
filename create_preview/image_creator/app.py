@@ -150,7 +150,7 @@ class ImageCreator(object):
             print("BOTTOM:", text_values)
             text_content = ", ".join(text_values)
         
-        else if "bernhard" in self.font_type:
+        eliSf "bernhard" in self.font_type:
             payload_array = []
             
             for line in self.lines.values():
