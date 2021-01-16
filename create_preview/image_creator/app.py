@@ -145,20 +145,17 @@ class ImageCreator(object):
         draw = ImageDraw.Draw(canvas)
 
         font = ImageFont.truetype(self.font_type, font_size)
+
         if "bottom" in self.alignment:
             text_values = [line for line in self.lines.values() if not line == ""]
             print("BOTTOM:", text_values)
             text_content = ", ".join(text_values)
-        
-        elif "bernhard" in self.font_type:
-            payload_array = []
-            
-            for line in self.lines.values():
-                payload_array.append(line.upper())
-            text_content = "\n".join(payload_array)
 
         else: 
             text_content = "\n".join(self.lines.values())
+
+        if "bernhard" in self.font_type:
+            text_content = text_content.upper()
 
         text_size = draw.multiline_textsize(text_content, font=font)
 
@@ -195,7 +192,7 @@ class ImageCreator(object):
         elif "top" in alignment:
             text_alignment = "center"
             x = (CANVAS_W - TEXT_W)/2
-            y = self.mm_to_pixels(2)
+            y = self.mm_to_pixels(4)
         else:
             text_alignment = "center"
             x = (CANVAS_W - TEXT_W)/2

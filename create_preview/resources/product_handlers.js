@@ -14,17 +14,17 @@ $(document).ready(function() {
         let data_content = data.serializeArray()
         
         let data_payload = {
-            "font_type": data_content.filter((e) => {return e.name == "fonts"})[0].value,
+            "font_type": data_content.filter((e) => {return e.name == "properties[Font]"})[0].value,
             "paper_type": convert_paper_size(paper_size.val()),
             "paper_color": convert_paper_stock(paper_stock.val()),
-            "alignment": data_content.filter((e) => {return e.name =="alignment"})[0].value,
-            "text_color": data_content.filter((e) => {return e.name == "text-color"})[0].value,
+            "alignment": data_content.filter((e) => {return e.name =="properties[Alignment]"})[0].value,
+            "text_color": data_content.filter((e) => {return e.name == "properties[Font Colour]"})[0].value,
             "quantity": quantity.val(),
             "lines": {
-                "line1": data_content.filter((e) => {return e.name == "line1"})[0].value,
-                "line2": data_content.filter((e) => {return e.name == "line2"})[0].value,
-                "line3": data_content.filter((e) => {return e.name == "line3"})[0].value,
-                "line4": data_content.filter((e) => {return e.name == "line4"})[0].value
+                "line1": data_content.filter((e) => {return e.name == "properties[Line 1]"})[0].value,
+                "line2": data_content.filter((e) => {return e.name == "properties[Line 2]"})[0].value,
+                "line3": data_content.filter((e) => {return e.name == "properties[Line 3]"})[0].value,
+                "line4": data_content.filter((e) => {return e.name == "properties[Line 4]"})[0].value
             }
         }
 
@@ -151,13 +151,13 @@ $(document).ready(function() {
         })  
     }
 
-    font_selector.on("load", update_font_selector)
+    font_selector.ready(update_font_selector)
     font_selector.on("change", update_font_selector)
 
     $("#ProductSelect-p-stationery-template-option-0").on("load", showRelevant)
     $("#ProductSelect-p-stationery-template-option-0").on("change", showRelevant)
     
-    $(".cod_clickable").on('load', updateClickable)
+    $(".cod_clickable").ready(updateClickable)
     $(".cod_clickable").on('change', updateClickable)
     
     updateSelectorStyles();
