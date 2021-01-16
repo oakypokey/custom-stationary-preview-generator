@@ -17,7 +17,7 @@ $(document).ready(function() {
             "font_type": data_content.filter((e) => {return e.name == "properties[Font]"})[0].value,
             "paper_type": convert_paper_size(paper_size.val()),
             "paper_color": convert_paper_stock(paper_stock.val()),
-            "alignment": data_content.filter((e) => {return e.name =="properties[Alignment]"})[0].value,
+            "alignment": convert_alignment(data_content.filter((e) => {return e.name =="properties[Alignment]"})[0].value),
             "text_color": data_content.filter((e) => {return e.name == "properties[Font Colour]"})[0].value,
             "quantity": quantity.val(),
             "lines": {
@@ -129,6 +129,16 @@ $(document).ready(function() {
             case 'shelley_allegro': return 'shell'
             default: return 'Aria'
         }
+    }
+
+    let convert_alignment = function(alignment){
+        switch(alignment){
+            case "Right Right": return "right_right"
+            case "Right Left": return "right_left"
+            case "Top": return "top"
+            case "Bottom": return "bottom"
+        }
+
     }
 
     let update_font_selector = function() {
