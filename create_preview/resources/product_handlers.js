@@ -74,7 +74,7 @@ $(document).ready(function() {
         // Get the photo from server
         $.ajax({
             type:"GET",
-            url: "https://the-paper-place-australia.myshopify.com/apps/generate-image/generate-image?json="+encodeURIComponent(JSON.stringify(data_payload)),
+            url: "https://thepaperplace.com.au/apps/generate-image/generate-image?json="+encodeURIComponent(JSON.stringify(data_payload)),
             success: function(returned_data){
                 console.log(returned_data)
                 if($("#ProductImageWrapper-Featured").length){
